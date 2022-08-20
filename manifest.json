@@ -1,0 +1,32 @@
+{
+  "name": "You Shield",
+  "version": "0.1.0",
+  "description": "You Shield, protecting you from your irresponsible future self",
+  "permissions": ["storage", "tabs", "webRequest"],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["Resources/Icon.png"],
+      "matches": ["https://*.youtube.com/*"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "Resources/Icon.png",
+      "32": "Resources/Icon.png",
+      "64": "Resources/Icon.png"
+    },
+    "default_title": "You Shield",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 3
+}
