@@ -19,4 +19,4 @@ If you try to make your time limit higher, it tells you that it will do that tom
 
 To download this extension, you just need to click the releases on the right and download the YouShieldExtension.crx file, then you'll get a popup that will tell you to enable the extension. Or if that doesn't work, you can open the manage extensions tab and then drag and drop the crx file anywhere there.
 
-Thanks, Enjoy *not* procrastinating
+Thanks, and enjoy *not* procrastinating
