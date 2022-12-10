@@ -4,6 +4,8 @@ Protecting you from yourself
 
 This extension tries as hard as possible to keep you from procrastinating and falling into the youtube content hole.
 
+[I made a video about this that showcases this so much better](https://www.youtube.com/watch?v=ws_C7kPUBiI)
+
 ![image](https://user-images.githubusercontent.com/82272898/206874034-234969ff-fbb0-4aaf-8f22-429ff0ce3441.png)
 
 ![image](https://user-images.githubusercontent.com/82272898/206874602-9703b17b-2c34-46e0-858e-dc105d537746.png)
