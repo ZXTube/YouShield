@@ -1,7 +1,7 @@
 {
   "name": "You Shield",
-  "version": "0.1.0",
-  "description": "You Shield, protecting you from your irresponsible future self",
+  "version": "0.2.0",
+  "description": "You Shield, protecting you from yourself",
   "permissions": ["storage", "tabs", "webRequest"],
   "host_permissions": ["https://*.youtube.com/*"],
   "background": {
@@ -25,8 +25,7 @@
       "32": "Resources/Icon.png",
       "64": "Resources/Icon.png"
     },
-    "default_title": "You Shield",
-    "default_popup": "popup.html"
+    "default_title": "You Shield"
   },
   "manifest_version": 3
 }

@@ -5,11 +5,11 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
         type: 'NEW_VIDEO_STARTED',
       });
     }
-    else {
+    if (tab.url.includes('youtube.com/shorts')) {
       chrome.tabs.sendMessage(tabId, {
-        type: 'REMOVE_OLD_PROMPT',
+        type: 'SHORTS_STARTED',
       });
     }
   }
 });
- 
+
