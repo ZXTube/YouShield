@@ -1,6 +1,6 @@
 # YouShield
 
-Protecting you from yourself
+Protecting you from YouTube
 
 This extension tries as hard as possible to keep you from procrastinating and falling into the youtube content hole.
 
