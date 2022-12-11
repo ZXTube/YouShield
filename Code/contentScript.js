@@ -20,9 +20,21 @@
     function manageVideo() {
         for (let i = 1; i < 15; i++) {
             setTimeout(() => {
-                let videoRecommendations = document.getElementById('secondary');
-                if (videoRecommendations)
-                    videoRecommendations.remove();
+                let video_recommendations = document.getElementById('secondary');
+                if (video_recommendations)
+                    video_recommendations.remove();
+
+                let endscreen = document.getElementsByClassName('html5-endscreen')[0];
+                if (endscreen)
+                    endscreen.remove();
+
+                let suggestions = document.getElementsByClassName('ytp-ce-element')[0];
+                if (suggestions)
+                    suggestions.remove();
+
+                let autoplay_video = document.getElementsByClassName('ytp-autonav-endscreen-countdown-overlay')[0];
+                if (autoplay_video)
+                    autoplay_video.remove();
             }, i * 500);
         }
     }
@@ -36,10 +48,10 @@
     function manageHomepage() {
         for (let i = 1; i < 25; i++) {
             setTimeout(() => {
-                let videoRecommendations = document.getElementsByTagName('ytd-rich-grid-renderer')[0];
-                if (videoRecommendations) {
-                    videoRecommendations.innerHTML = 'This place is too dangerous <br> I shall protect you ;)';
-                    videoRecommendations.style = "font-family: cursive; font-size: 4vw; text-align: center; width: 80%;position: absolute; top: 45%; color: rgb(200, 200, 200)";
+                let video_recommendations = document.getElementsByTagName('ytd-rich-grid-renderer')[0];
+                if (video_recommendations) {
+                    video_recommendations.innerHTML = 'This place is too dangerous';
+                    video_recommendations.style = "font-family: cursive; font-size: 4vw; text-align: center; width: 80%;position: absolute; top: 45%; color: rgb(200, 200, 200)";
                 }
             }, i * 300);
         }
