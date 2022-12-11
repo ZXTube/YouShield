@@ -2,7 +2,7 @@
   "name": "You Shield",
   "version": "2.0",
   "description": "You Shield, protecting you from yourself",
-  "permissions": ["storage", "tabs", "webRequest"],
+  "permissions": ["tabs", "webRequest"],
   "host_permissions": ["https://*.youtube.com/*"],
   "background": {
     "service_worker": "background.js"
@@ -21,9 +21,7 @@
   ],
   "action": {
     "default_icon": {
-      "16": "Resources/Icon.png",
-      "32": "Resources/Icon.png",
-      "64": "Resources/Icon.png"
+      "512": "Resources/Icon.png"
     },
     "default_title": "You Shield"
   },
