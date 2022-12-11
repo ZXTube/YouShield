@@ -4,25 +4,15 @@ Protecting you from YouTube
 
 This extension tries as hard as possible to keep you from procrastinating and falling into the youtube content hole.
 
-[I made a video about this that showcases this so much better](https://www.youtube.com/watch?v=ws_C7kPUBiI)
+It removes the YouTube homepage video recommendations and replaces it with this:
+![image](https://user-images.githubusercontent.com/82272898/206928668-b7c9d00a-fb61-4e97-9d59-3a5474a4454d.png)
 
-![image](https://user-images.githubusercontent.com/82272898/206874034-234969ff-fbb0-4aaf-8f22-429ff0ce3441.png)
+If you're watching a video it deletes all the videos on the right and it lookes like this:
+![image](https://user-images.githubusercontent.com/82272898/206928623-aec9a964-c85a-469e-932c-dd7961583f2d.png)
 
-![image](https://user-images.githubusercontent.com/82272898/206874602-9703b17b-2c34-46e0-858e-dc105d537746.png)
+and if you try to watch any YouTube short, this will happen:
+![image](https://user-images.githubusercontent.com/82272898/206928727-f44cb65b-d7de-4ab1-af52-e695304a29d9.png)
 
-It knows how much time you spent watching youtube, and if that time is smaller than your time limit, then it tells you this:
-
-![image](https://user-images.githubusercontent.com/82272898/206874591-0ef6c20e-2d4d-4469-ba0d-b12354964bb0.png)
-
-but if it's bigger than your time limit you get sent to this page:
-
-![image](https://user-images.githubusercontent.com/82272898/206874157-6902a9ec-06f1-4e7a-a205-bf0a6df279c2.png)
-
-Here is where you can change your time limit, there's {Failure: 2.5 hours, Useless: 2 hours, Normal: 1.5 hours, Useful: 1 hour, !Failure: 0.5 hours}
-If you try to make your time limit higher, it tells you that it will do that tomorrow:
-
-![image](https://user-images.githubusercontent.com/82272898/206874383-5e653aec-1878-47a7-b06d-1862b09def60.png)
-
-To download this extension, you just need to click the releases on the right and download the YouShieldExtension.crx file, then you'll get a popup that will tell you to enable the extension. Or if that doesn't work, you can open the manage extensions tab and then drag and drop the crx file anywhere there.
+To download this extension, you just need to click the releases button at the right of the screen and download the crx file, then you'll get a popup that asking you if you want to download the extension. Or if that doesn't work, you can open the manage extensions tab and then drag and drop the crx file anywhere there.
 
 Thanks, and enjoy *not* procrastinating
