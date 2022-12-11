@@ -8,7 +8,7 @@ It removes the YouTube homepage video recommendations and replaces it with this:
 ![image](https://user-images.githubusercontent.com/82272898/206928668-b7c9d00a-fb61-4e97-9d59-3a5474a4454d.png)
 
 If you're watching a video it deletes all the videos on the right and it lookes like this:
-![image](https://user-images.githubusercontent.com/82272898/206928623-aec9a964-c85a-469e-932c-dd7961583f2d.png)
+![image](https://user-images.githubusercontent.com/82272898/206929043-94776c9a-d6b6-4302-a05b-b60fbdec8bf7.png)
 
 and if you try to watch any YouTube short, this will happen:
 ![image](https://user-images.githubusercontent.com/82272898/206928727-f44cb65b-d7de-4ab1-af52-e695304a29d9.png)
