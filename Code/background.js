@@ -2,12 +2,17 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
   if (tab.url) {
     if (tab.url.includes('youtube.com/watch')) {
       chrome.tabs.sendMessage(tabId, {
-        type: 'NEW_VIDEO_STARTED',
+        type: 'NEW_VIDEO_OPENED',
       });
     }
-    if (tab.url.includes('youtube.com/shorts')) {
+    else if (tab.url.includes('youtube.com/shorts')) {
       chrome.tabs.sendMessage(tabId, {
-        type: 'SHORTS_STARTED',
+        type: 'SHORTS_OPENED',
+      });
+    }
+    else if (tab.url == 'https://www.youtube.com/' || tab.url.startsWith('https://www.youtube.com/?')) {
+      chrome.tabs.sendMessage(tabId, {
+        type: 'HOMEPAGE_OPENED',
       });
     }
   }
