@@ -1,6 +1,6 @@
 {
   "name": "You Shield",
-  "version": "0.2.0",
+  "version": "2.0",
   "description": "You Shield, protecting you from yourself",
   "permissions": ["storage", "tabs", "webRequest"],
   "host_permissions": ["https://*.youtube.com/*"],
