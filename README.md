@@ -15,7 +15,7 @@ and if you try to watch any YouTube short, this will happen:
 
 To download this extension, click the releases button at the right of the screen and download the CRX file, then you'll get a popup asking you if you want to download the extension. Or if that doesn't work, you can open [the manage extensions tab](chrome://extensions/), then drag and drop the CRX file anywhere there. If you get a `CRX_REQUIRED_PROOF_MISSING` error or chrome doesn't let you enable the extension, then you can download the ZIP file, then extract it, then in [the extensions tab](chrome://extensions/) enable developer mode, at the top right, then click load unpacked, at the top left, then choose the extracted folder, and that should work, if it still doesn't work then raise an [Issue](https://github.com/ZXTube/YouShield/issues) here and I'll try to help you.
 
-Btw, the reason you might get the CRX_REQUIRED_PROOF_MISSING error is that I didn't publish this extension on the chrome web store, so chrome goes like nope, don't worry I will protect you my dear child and then ruins everything, It costs $5 to be able to publish extensions, so I might publish it when I feel like this extension is getting attention
+Btw, the reason you might get the `CRX_REQUIRED_PROOF_MISSING` error is that I didn't publish this extension on the chrome web store, so chrome goes like nope, don't worry I will protect you my dear child and then ruins everything, It costs $5 to be able to publish extensions, so I might publish it when I feel like this extension is getting attention
 
 Thanks, and enjoy *not* procrastinating
 
