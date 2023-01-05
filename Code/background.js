@@ -15,6 +15,11 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
         type: 'HOMEPAGE_OPENED',
       });
     }
+    else {
+      chrome.tabs.sendMessage(tabId, {
+        type: 'REMOVE_DANGEROUS_THINGS',
+      });
+    }
   }
 });
 

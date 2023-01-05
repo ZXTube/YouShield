@@ -7,6 +7,8 @@
         } else if (obj.type == 'HOMEPAGE_OPENED') {
             setTimeout(manageHomepage, 500);
         }
+
+        removeDangerousThings();
     });
 
     if (window.location.href.includes('https://www.youtube.com/watch')) {
@@ -17,12 +19,14 @@
         manageHomepage();
     }
 
+    removeDangerousThings();
+
     function manageVideo() {
         for (let i = 1; i < 50; i++) {
             setTimeout(() => {
-                let video_recommendations = document.getElementById('secondary');
-                if (video_recommendations)
-                    video_recommendations.remove();
+                let videoRecommendations = document.getElementById('secondary-inner');
+                if (videoRecommendations)
+                    videoRecommendations.parentNode.remove();
 
                 let endscreen = document.getElementsByClassName('html5-endscreen')[0];
                 if (endscreen)
@@ -32,11 +36,9 @@
                 if (suggestions)
                     suggestions.remove();
 
-                let autoplay_video = document.getElementsByClassName('ytp-autonav-endscreen-countdown-overlay')[0];
-                if (autoplay_video)
-                    autoplay_video.remove();
-
-                removeDangerousThings();
+                let autoplayVideo = document.getElementsByClassName('ytp-autonav-endscreen-countdown-overlay')[0];
+                if (autoplayVideo)
+                    autoplayVideo.remove();
             }, i * 100);
         }
     }
@@ -46,10 +48,8 @@
             setTimeout(() => {
                 let otherShorts = document.getElementsByTagName('ytd-reel-video-renderer');
                 for (let i = 1; i < otherShorts.length; i++) {
-                    otherShorts[i].remove();
+                    otherShorts[1].remove();
                 }
-
-                removeDangerousThings();
             }, i * 500);
         }
     }
@@ -57,42 +57,44 @@
     function manageHomepage() {
         for (let i = 1; i < 70; i++) {
             setTimeout(() => {
-                let video_recommendations = document.getElementsByTagName('ytd-rich-grid-renderer');
-                if (video_recommendations.length > 0 && video_recommendations[0].classList.contains('style-scope')) {
-                    video_recommendations[0].classList.remove('style-scope');
-                    video_recommendations[0].innerHTML = `<img src="${chrome.runtime.getURL("Resources/Homepage.png")}" style="width:80vw; position: absolute; top: 1px;">`;
-                    video_recommendations[0].style = "font-family: cursive; font-size: 4vw; text-align: center; width: 80%;position: absolute; top: 10%; color: rgb(200, 200, 200)";
+                let videoRecommendations = document.getElementsByTagName('ytd-two-column-browse-results-renderer');
+                for (let i = 0; i < videoRecommendations.length; i++) {
+                    if (videoRecommendations[i].getAttribute('page-subtype') == 'home' && videoRecommendations[i].classList.contains('style-scope')) {
+                        videoRecommendations[i].classList.remove('style-scope');
+                        videoRecommendations[i].innerHTML = `<img src="${chrome.runtime.getURL("Resources/Homepage.png")}" style="width:80vw; position: absolute; top: 1px;">`;
+                        videoRecommendations[i].style = "font-family: cursive; font-size: 4vw; text-align: center; width: 80%;position: absolute; top: 10%; color: rgb(200, 200, 200)";
+                    }
                 }
-
-                removeDangerousThings();
             }, i * 100);
         }
     }
 
     function removeDangerousThings() {
-        let thingsOnBottomLeft = document.getElementsByTagName('ytd-guide-section-renderer')
-        if (thingsOnBottomLeft.length > 2) {
-            thingsOnBottomLeft[2].remove();
-            thingsOnBottomLeft[3].remove();
-        }
+        for (let i = 1; i < 50; i++) {
+            setTimeout(() => {
+                let thingsOnBottomLeft = document.getElementsByTagName('ytd-guide-section-renderer')
+                if (thingsOnBottomLeft.length > 3) {
+                    thingsOnBottomLeft[2].remove(); // Explore
+                    thingsOnBottomLeft[2].remove(); // More from YouTube
+                }
 
-        let buttonsOnTopLeft = document.getElementById('sections');
-        if (buttonsOnTopLeft) {
-            let shortsButtonGrandparent = buttonsOnTopLeft.children[0]
-            if (shortsButtonGrandparent) {
-                let shortsButtonParent = shortsButtonGrandparent.children[1]
-                if (shortsButtonParent.children.length > 3)
-                    shortsButtonParent.children[1].remove();
-            }
-        }
+                let buttonsOnTopLeft = document.getElementById('sections');
+                if (buttonsOnTopLeft) {
+                    let shortsButtonGrandparent = buttonsOnTopLeft.children[0]
+                    if (shortsButtonGrandparent) {
+                        let shortsButtonParent = shortsButtonGrandparent.children[1]
+                        if (shortsButtonParent && shortsButtonParent.children.length > 3)
+                            shortsButtonParent.children[1].remove(); // Shorts button
+                    }
+                }
 
-        let notificationsButton = document.getElementsByTagName('ytd-notification-topbar-button-renderer');
-        if (notificationsButton.length > 0)
-            notificationsButton[0].remove();
+                let notificationsButton = document.getElementsByTagName('ytd-notification-topbar-button-renderer');
+                if (notificationsButton.length > 0)
+                    notificationsButton[0].remove(); // Notifications button
+            }, i * 100);
+        }
     }
 })();
 
 // QUOTE: I hope you came here concously not subconsously, because if you came here subconsously thank your self for downloading YouShield
 // QUOTE: Watch what you want not what the algorithm wants
-
-// ERRORS: Fix youtube.com/@examplechannel/videos/ problem

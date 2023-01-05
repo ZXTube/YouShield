@@ -1,29 +1,29 @@
 {
-  "name": "You Shield",
-  "version": "3.0",
-  "description": "You Shield, protecting you from yourself",
+  "name": "YouShield",
+  "version": "2.0",
+  "description": "YouShield, protecting you from the algorithm",
   "permissions": ["tabs", "webRequest"],
-  "host_permissions": ["https://*.youtube.com/*"],
+  "host_permissions": ["https://www.youtube.com/*"],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://*.youtube.com/*"],
+      "matches": ["https://www.youtube.com/*"],
       "js": ["contentScript.js"]
     }
   ],
   "web_accessible_resources": [
     {
       "resources": ["Resources/*"],
-      "matches": ["https://*.youtube.com/*"]
+      "matches": ["https://www.youtube.com/*"]
     }
   ],
   "action": {
     "default_icon": {
       "512": "Resources/Icon.png"
     },
-    "default_title": "You Shield"
+    "default_title": "YouShield"
   },
   "manifest_version": 3
 }
