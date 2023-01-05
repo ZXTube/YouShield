@@ -1,6 +1,6 @@
 {
   "name": "YouShield",
-  "version": "2.0",
+  "version": "2.5",
   "description": "YouShield, protecting you from the algorithm",
   "permissions": ["tabs", "webRequest"],
   "host_permissions": ["https://www.youtube.com/*"],
