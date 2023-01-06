@@ -1,5 +1,5 @@
-chrome.tabs.onUpdated.addListener((tabId, tab) => {
-  if (tab.url) {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (tab.url && changeInfo.status == 'complete') {
     if (tab.url.includes('youtube.com/watch')) {
       chrome.tabs.sendMessage(tabId, {
         type: 'NEW_VIDEO_OPENED',
@@ -15,7 +15,7 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
         type: 'HOMEPAGE_OPENED',
       });
     }
-    else {
+    else if (tab.url.includes('www.youtube.com')) {
       chrome.tabs.sendMessage(tabId, {
         type: 'REMOVE_DANGEROUS_THINGS',
       });

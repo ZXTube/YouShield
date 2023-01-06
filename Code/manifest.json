@@ -18,10 +18,11 @@
       "matches": ["https://www.youtube.com/*"]
     }
   ],
+  "icons": {
+    "48": "Resources/Icon_48x48.png"
+  },
   "action": {
-    "default_icon": {
-      "512": "Resources/Icon.png"
-    },
+    "default_icon": "Resources/Icon_48x48.png",
     "default_title": "YouShield"
   },
   "manifest_version": 3
