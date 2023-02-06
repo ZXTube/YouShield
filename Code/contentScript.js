@@ -1,11 +1,11 @@
 (() => {
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         if (obj.type == 'NEW_VIDEO_OPENED') {
-            setTimeout(manageVideo, 200);
+            manageVideo()
         } else if (obj.type == 'SHORTS_OPENED') {
             manageShorts();
         } else if (obj.type == 'HOMEPAGE_OPENED') {
-            setTimeout(manageHomepage, 500);
+            manageHomepage();
         }
 
         removeDangerousThings();
