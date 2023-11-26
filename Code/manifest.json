@@ -1,6 +1,6 @@
 {
   "name": "YouShield",
-  "version": "2.5",
+  "version": "3",
   "description": "YouShield, protecting you from the algorithm",
   "permissions": ["tabs"],
   "background": {
@@ -19,10 +19,10 @@
     }
   ],
   "icons": {
-    "48": "Resources/Icon_48x48.png"
+    "48": "icon_48x48.png"
   },
   "action": {
-    "default_icon": "Resources/Icon_48x48.png",
+    "default_icon": "icon_48x48.png",
     "default_title": "YouShield"
   },
   "manifest_version": 3

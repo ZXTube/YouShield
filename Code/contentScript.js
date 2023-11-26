@@ -6,67 +6,72 @@
             manageShorts();
         } else if (obj.type == 'HOMEPAGE_OPENED') {
             manageHomepage();
+        } else if (obj.type == 'SEARCH_RESULTS_OPENED') {
+            manageSearchResults();
+        } else if (obj.type == 'SUBSCRIPTIONS_FEED_OPENED') {
+            manageSubscriptionsFeed();
         }
 
         removeDangerousThings();
     });
 
-    if (window.location.href.includes('https://www.youtube.com/watch')) {
-        manageVideo();
-    } else if (window.location.href.includes('https://www.youtube.com/shorts')) {
-        manageShorts();
-    } else if (window.location.href == 'https://www.youtube.com/' || window.location.href.startsWith('https://www.youtube.com/?')) {
-        manageHomepage();
-    }
-
-    removeDangerousThings();
-
     function manageVideo() {
-        for (let i = 1; i < 50; i++) {
-            setTimeout(() => {
-                let videoRecommendations = document.getElementById('secondary-inner');
-                if (videoRecommendations)
-                    videoRecommendations.parentNode.remove();
-
-                let endscreen = document.getElementsByClassName('html5-endscreen')[0];
-                if (endscreen)
-                    endscreen.remove();
-
-                let suggestions = document.getElementsByClassName('ytp-ce-element')[0];
-                if (suggestions)
-                    suggestions.remove();
-
-                let autoplayVideo = document.getElementsByClassName('ytp-autonav-endscreen-countdown-overlay')[0];
-                if (autoplayVideo)
-                    autoplayVideo.remove();
-            }, i * 100);
-        }
+        manageContentPage
+        multipleRemoveWhenExists([
+            () => { return document.getElementsByClassName('ytp-autonav-endscreen-countdown-overlay')[0] },
+            () => { return document.getElementById('secondary-inner').parentNode },
+            () => { return document.getElementsByClassName('html5-endscreen')[0] },
+            () => { return document.getElementsByClassName('ytp-ce-element')[0] }
+        ]);
     }
 
     function manageShorts() {
-        for (let i = 1; i < 10; i++) {
-            setTimeout(() => {
-                let otherShorts = document.getElementsByTagName('ytd-reel-video-renderer');
-                for (let i = 1; i < otherShorts.length; i++) {
-                    otherShorts[1].remove();
-                }
-            }, i * 500);
+        requestAnimationFrame(check);
+        function check() {
+            let shorts = document.getElementsByTagName('ytd-reel-video-renderer');
+            for (let i = 1; i < shorts.length; i++) shorts[i].remove();
+            if (shorts.length != 1) requestAnimationFrame(check);
         }
     }
 
     function manageHomepage() {
-        for (let i = 1; i < 70; i++) {
-            setTimeout(() => {
-                let videoRecommendations = document.getElementsByTagName('ytd-two-column-browse-results-renderer');
-                for (let i = 0; i < videoRecommendations.length; i++) {
-                    if (videoRecommendations[i].getAttribute('page-subtype') == 'home' && videoRecommendations[i].classList.contains('style-scope')) {
-                        videoRecommendations[i].classList.remove('style-scope');
-                        videoRecommendations[i].innerHTML = `<img src="${chrome.runtime.getURL("Resources/Homepage.png")}" style="width:80vw; position: absolute; top: 1px;">`;
-                        videoRecommendations[i].style = "font-family: cursive; font-size: 4vw; text-align: center; width: 80%;position: absolute; top: 10%; color: rgb(200, 200, 200)";
-                    }
-                }
-            }, i * 100);
-        }
+        document.head.innerHTML = `<style> .youshield-button { background-color: #202020; text-align: center; padding: 6vh 7vw; border-radius: 10px; color: white; font-size: 2vw; font-family:'Courier New', Courier, monospace; margin: auto 1.5vw; cursor: pointer; box-shadow: 0px 0px 6px #202020; transition: all 0.5s ease; } .youshield-button:hover { background-color: #323232; } #search-input { box-shadow: 0px 0px 4px #202020; background-color: #202020; border-radius: 1000px; position: absolute; padding: 1vw; top: -90vh; width: 45%; transition: top 0.5s, background-color 0.3s ease; } #search-input:hover{ background-color: #252525; } #search-input[visible="true"] { top: 10vh; } </style>`;
+        document.body.style = "height: 98vh; display: flex; justify-content: center; background-color: #101010;";
+        document.body.innerHTML = `<form action="/results"> <div id="search-input"> <input autocapitalize="none" autocomplete="off" autocorrect="off" name="search_query" type="text" placeholder="Search" style="background-color: transparent; border: none; outline: none; font-size: 1.3vw; color: #eee; width: 100%;"> </div> </form> <div class="youshield-button" onclick="let a=document.getElementById('search-input'); a.setAttribute('visible', (a.getAttribute('visible') == 'true') ? 'false' : 'true'); a.children[0].focus()">Search</div> <div class="youshield-button" onclick="document.location.href = '/feed/subscriptions'">Consume</div>`;
+    }
+
+    function manageSearchResults() {
+        manageContentPage();
+        removeWhenExists(() => { return document.querySelector('.ytd-search#header') })
+    }
+
+    function manageSubscriptionsFeed() {
+        manageContentPage();
+        changeWhenExists(() => { return document.querySelector('[aria-label="Manage"]') }, (elem) => { elem.textContent = 'Channels' })
+    }
+
+    function manageContentPage() {
+        document.querySelector('ytd-masthead').style.opacity = 0;
+        changeWhenExists(() => { return document.querySelector('ytd-topbar-menu-button-renderer.ytd-masthead') }, elem => {
+            let masthead = document.getElementById('masthead-container');
+            masthead.style.pointerEvents = 'none';
+            elem.style.margin = '1.3vw';
+            elem.style.marginLeft = '93vw';
+            masthead.appendChild(elem);
+            document.querySelector('ytd-masthead').remove();
+        });
+
+        removeIfExists(document.getElementsByTagName('tp-yt-app-drawer')[0]);
+        document.getElementsByTagName('ytd-page-manager')[0].style.margin = '5vw';
+
+        let searchForm = document.createElement('form');
+        searchForm.action = '/results';
+        searchForm.innerHTML = '<div id="search-input"> <input autocapitalize="none" autocomplete="off" autocorrect="off" name="search_query" type="text" placeholder="Search" style="background-color: transparent; border: none; outline: none; font-size: 1vw; color: #eee; width: 100%;"> </div>';
+        document.body.appendChild(searchForm);
+
+        let searchStyle = document.createElement('style');
+        searchStyle.innerHTML = `#search-input { box-shadow: 0px 0px 4px #202020; background-color: #202020; border-radius: 1000px; position: absolute; padding: 0.7vw; top: 1vw; left: calc(50% - 20%); width: 40%; transition: top 0.5s, background-color 0.3s ease; } #search-input:hover{ background-color: #252525; }`;
+        document.head.appendChild(searchStyle);
     }
 
     function removeDangerousThings() {
@@ -92,6 +97,34 @@
                 if (notificationsButton.length > 0)
                     notificationsButton[0].remove(); // Notifications button
             }, i * 100);
+        }
+    }
+
+    function removeIfExists(elem) {
+        if (elem) elem.remove();
+    }
+
+    function removeWhenExists(findFunction) {
+        changeWhenExists(findFunction, elem => elem.remove());
+    }
+
+    function changeWhenExists(findFunction, changeFunction) {
+        let elem; requestAnimationFrame(check);
+        function check() {
+            elem = findFunction();
+            if (elem != undefined) changeFunction(elem);
+            else requestAnimationFrame(check);
+        }
+    }
+
+    function multipleRemoveWhenExists(findFunctions) {
+        requestAnimationFrame(check);
+        function check() {
+            for (let i = 0; i < findFunctions.length; i++) {
+                const elem = findFunctions[i]();
+                if (elem != undefined) elem.remove();
+                else requestAnimationFrame(check);
+            }
         }
     }
 })();

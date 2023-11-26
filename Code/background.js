@@ -15,6 +15,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         type: 'HOMEPAGE_OPENED',
       });
     }
+    else if (tab.url.includes('youtube.com/results?')) {
+      chrome.tabs.sendMessage(tabId, {
+        type: 'SEARCH_RESULTS_OPENED',
+      });
+    }
+    else if (tab.url.includes('youtube.com/feed/subscriptions')) {
+      chrome.tabs.sendMessage(tabId, {
+        type: 'SUBSCRIPTIONS_FEED_OPENED',
+      });
+    }
     else if (tab.url.includes('www.youtube.com')) {
       chrome.tabs.sendMessage(tabId, {
         type: 'REMOVE_DANGEROUS_THINGS',

@@ -16,4 +16,4 @@ You can download this extension [on chrome web store](https://chrome.google.com/
 
 Thanks, and enjoy *not* procrastinating
 
-[**You Shield 1.0**](https://github.com/ZXTube/YouShield/releases/tag/1.0) is very different from YouShield 2.0 and 3.0 so some people might prefer it.
+[**You Shield 1.0**](https://github.com/ZXTube/YouShield/releases/tag/1.0) is very different from YouShield 2.0 and 3.0 so some people might prefer it, check it out.

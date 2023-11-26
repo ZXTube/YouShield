@@ -1,0 +1,48 @@
+<style>
+    .youshield-button {
+        background-color: #202020;
+        text-align: center;
+        padding: 6vh 7vw;
+        border-radius: 10px;
+        color: white;
+        font-size: 2vw;
+        font-family:'Courier New', Courier, monospace;
+        margin: auto 1.5vw;
+        cursor: pointer;
+        box-shadow: 0px 0px 6px #202020;
+        transition: all 0.5s ease;
+    }
+    .youshield-button:hover {
+        background-color: #323232;
+    }
+
+    #search-input {
+        box-shadow: 0px 0px 4px #202020;
+        background-color: #202020;
+        border-radius: 1000px;
+        position: absolute;
+        padding: 1vw;
+        top: -90vh;
+        width: 45%;
+
+        transition: top 0.5s, background-color 0.3s ease;
+    }
+    #search-input:hover{
+        background-color: #252525;
+    }
+    #search-input[visible="true"] {
+        top: 10vh;
+    }
+</style>
+
+
+<body style="height: 98vh; display: flex; justify-content: center; background-color: #101010;">
+    <form action="/results">
+        <div id="search-input">
+            <input autocapitalize="none" autocomplete="off" autocorrect="off" name="search_query" type="text" placeholder="Search" style="background-color: transparent; border: none; outline: none; font-size: 1.3vw; color: #eee; width: 100%;">
+        </div>
+    </form>
+
+    <div class="youshield-button" onclick="let a=document.getElementById('search-input'); a.setAttribute('visible', (a.getAttribute('visible') == 'true') ? 'false' : 'true'); a.children[0].focus()">Search</div>
+    <div class="youshield-button" onclick="document.location.href = '/feed/subscriptions'">Consume</div>
+</body>
