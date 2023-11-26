@@ -15,8 +15,22 @@
         removeDangerousThings();
     });
 
+    if (window.location.href.includes('https://www.youtube.com/watch')) {
+        manageVideo();
+    } else if (window.location.href.includes('https://www.youtube.com/shorts')) {
+        manageShorts();
+    } else if (window.location.href == 'https://www.youtube.com/' || window.location.href.startsWith('https://www.youtube.com/?')) {
+        manageHomepage();
+    } else if (window.location.href.includes('youtube.com/results?')) {
+    	manageSearchResults();
+    } else if (window.location.href.includes('youtube.com/feed/subscriptions')) {
+        manageSubscriptionsFeed();
+    }
+
+    removeDangerousThings();
+
     function manageVideo() {
-        manageContentPage
+        manageContentPage();
         multipleRemoveWhenExists([
             () => { return document.getElementsByClassName('ytp-autonav-endscreen-countdown-overlay')[0] },
             () => { return document.getElementById('secondary-inner').parentNode },
@@ -118,14 +132,23 @@
     }
 
     function multipleRemoveWhenExists(findFunctions) {
-        requestAnimationFrame(check);
         function check() {
-            for (let i = 0; i < findFunctions.length; i++) {
-                const elem = findFunctions[i]();
-                if (elem != undefined) elem.remove();
-                else requestAnimationFrame(check);
-            }
+            let foundAndRemoved = false;
+
+            findFunctions = findFunctions.filter(findFunction => {
+                const elem = findFunction();
+                if (elem != undefined) {
+                    foundAndRemoved = true;
+                    elem.remove();
+                    return false;
+                }
+                return true;
+            });
+
+            if (foundAndRemoved) requestAnimationFrame(check);
         }
+
+        requestAnimationFrame(check);
     }
 })();
 
