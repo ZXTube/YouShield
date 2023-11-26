@@ -2,17 +2,20 @@
 
 Protecting you from YouTube
 
-This extension tries as hard as possible to keep you from procrastinating and falling into the youtube content hole.
+This extension tries as hard as possible to keep you from procrastinating and falling into the YouTube loop.
+It has a very simplistic and calm design.
 
-It removes the YouTube homepage video recommendations and replaces them with this:
-![image](https://user-images.githubusercontent.com/82272898/210769744-260a9130-fa8c-4eda-935b-accdf78a3516.png)
+It removes the YouTube homepage video recommendations and gives you two options, search, or consume:
+![Screenshot 2023-11-26 173837](https://github.com/ZXTube/YouShield/assets/82272898/a3661c8a-d39a-46e5-8e24-79768a52255a)
+
+The consume button sends you to the subscriptions page so that you can choose which quality channels to consume.
 
 If you're watching a video it deletes all the videos on the right and it looks like this:
-![image](https://user-images.githubusercontent.com/82272898/210769774-63ef743f-214c-4c15-8e05-7cc1944f9a4f.png)
+![Screenshot 2023-11-26 174610](https://github.com/ZXTube/YouShield/assets/82272898/e388ddcf-c5bd-4b88-bba4-3abb83e8a512)
 
-The shorts button and the notifications button are removed, and if you open a link to a shorts video you won't be able to scroll down to get more videos
+If you open a shorts video you won't be able to scroll down to get more videos and get stuck in that disgusting trap.
 
-You can download this extension [on chrome web store](https://chrome.google.com/webstore/detail/youshield/iohilpdcenclcjbjbebbjgpiimobkpje) or you can download it from github by clicking the [releases button](https://github.com/ZXTube/YouShield/releases) at the right of the screen and download the CRX file, then you'll get a popup asking you if you want to download the extension. Or if that doesn't work, you can open the tab for managing extensions, then drag and drop the CRX file anywhere there.
+You can download this extension [on chrome web store](https://chrome.google.com/webstore/detail/youshield/iohilpdcenclcjbjbebbjgpiimobkpje) or you can download it from github by clicking the [releases button](https://github.com/ZXTube/YouShield/releases) downloading the CRX file, then you'll get a popup asking you if you want to download the extension. Or if that doesn't work, you can open the tab for managing extensions, then drag and drop the CRX file anywhere there.
 
 Thanks, and enjoy *not* procrastinating
 
