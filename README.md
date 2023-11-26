@@ -18,3 +18,5 @@ Download this extension [on chrome web store](https://chrome.google.com/webstore
 Thanks, and enjoy *not* procrastinating
 
 [**You Shield 1.0**](https://github.com/ZXTube/YouShield/releases/tag/1.0) is very different from YouShield 2.0 and 3.0 so some people might prefer it, check it out.
+
+*If this extension was updated recently the updates could take up to a month to reflect in the chrome web store, if you want the new changes now you can download the extension from GitHub
