@@ -1,5 +1,8 @@
 (() => {
+    let ran = true;
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
+        if (ran) return;
+
         if (obj.type == 'NEW_VIDEO_OPENED') {
             manageVideo()
         } else if (obj.type == 'SHORTS_OPENED') {
@@ -33,7 +36,7 @@
         manageContentPage();
         multipleRemoveWhenExists([
             () => { return document.getElementsByClassName('ytp-autonav-endscreen-countdown-overlay')[0] },
-            () => { return document.getElementById('secondary-inner').parentNode },
+            () => { let a = document.getElementById('secondary-inner'); if (a != undefined) {return a.parentNode} },
             () => { return document.getElementsByClassName('html5-endscreen')[0] },
             () => { return document.getElementsByClassName('ytp-ce-element')[0] }
         ]);
@@ -73,10 +76,11 @@
             elem.style.marginLeft = '93vw';
             masthead.appendChild(elem);
             document.querySelector('ytd-masthead').remove();
+
+            document.getElementsByTagName('ytd-page-manager')[0].style.margin = '5vw';
         });
 
         removeIfExists(document.getElementsByTagName('tp-yt-app-drawer')[0]);
-        document.getElementsByTagName('ytd-page-manager')[0].style.margin = '5vw';
 
         let searchForm = document.createElement('form');
         searchForm.action = '/results';
@@ -145,7 +149,7 @@
                 return true;
             });
 
-            if (foundAndRemoved) requestAnimationFrame(check);
+            if (findFunctions.length > 0) requestAnimationFrame(check);
         }
 
         requestAnimationFrame(check);
