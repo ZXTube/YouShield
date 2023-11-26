@@ -15,7 +15,8 @@ If you open a shorts video you won't be able to scroll down to get more videos a
 
 Download this extension [on chrome web store](https://chrome.google.com/webstore/detail/youshield/iohilpdcenclcjbjbebbjgpiimobkpje) or you can download it from GitHub by clicking the [releases button](https://github.com/ZXTube/YouShield/releases) downloading the CRX file, then you'll get a popup asking you if you want to download the extension. Or if that doesn't work, you can open the tab for managing extensions, then drag and drop the CRX file anywhere there.
 
-Thanks, and enjoy *not* procrastinating
+That's it, enjoy *not* procrastinating ❤️
+
 
 [**You Shield 1.0**](https://github.com/ZXTube/YouShield/releases/tag/1.0) is very different from YouShield 2.0 and 3.0 so some people might prefer it, check it out.
 
