@@ -56,8 +56,12 @@ section h2 {
 }
 
 img {
-  max-width:4em;
+  max-width:6em;
   margin: 0px 0.5em;
+  cursor: pointer;
+}
+img:hover {
+  transform:scale(1.08);
 }
 
 @media only screen and (max-width:780px) {
@@ -97,12 +101,12 @@ img {
 <h1>YouShield</h1>
 <h2>Watch YouTube without any recommendations, shorts and more.</h2>
 
-<div class="button" onclick="location.href='https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje';">Add to Chrome now</div>
+<!-- <div class="button" onclick="location.href='https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje';">Add to Chrome now</div> -->
 
 <div style="display:flex; flex-direction: row; justify-content:center;">
-<img class="broswer-logo" src="website-resources/chrome.png">
-<img class="broswer-logo" src="website-resources/firefox.png">
-<img class="broswer-logo" src="website-resources/edge.png">
+<img class="broswer-logo" src="website-resources/chrome.png" onclick="location.href='https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje'">
+<img class="broswer-logo" src="website-resources/firefox.png" onclick="">
+<img class="broswer-logo" src="website-resources/edge.png" onclick="alert('Work in progress')">
 </div>
 
 </div>
