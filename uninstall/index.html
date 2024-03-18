@@ -73,7 +73,9 @@ h2 {
   align-self: flex-end;
   border-radius: 4px;
 }
-
+  .submit-button.clicked {
+    background-color: #57a; 
+  }
 </style>
 </head>
 <body>
@@ -125,6 +127,9 @@ h2 {
 
     async function submitFeedback(event) {
       event.preventDefault();
+
+      document.querySelector('.submit-button').classList.add('clicked');
+
       const feedbackData = {};
       if (document.getElementById('easyToUse').checked) feedbackData.easyToUse = true;
       if (document.getElementById('slowsComputer').checked) feedbackData.slowsComputer = true;
@@ -133,9 +138,11 @@ h2 {
       if (document.getElementById('other').checked) feedbackData.other = document.getElementById('otherText').value || '--Checkbox checked but no info written--';
 
       await addDoc(collection(db, "reviews"), feedbackData);
-      
+      // setTimeout(() => {
       document.querySelector('.survey-container').hidden = true;
       document.querySelector('.thank-you-container').hidden = false;
+      // }, 1000)
+      
     }
 
     document.querySelector('.survey-form').addEventListener('submit', submitFeedback);
