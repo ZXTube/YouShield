@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help</title>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #E0E0E0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+body>div {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+}
+p {
+  color: #999;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.thank-you-container {
+  text-align: center;
+}
+.thank-you-container>p {
+  margin-bottom: 0px;
+}
+
+.survey-form {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  color: #333;
+  margin: 0px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-container input {
+  margin-right: 10px;
+}
+
+.text-input {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  align-self: flex-end;
+  border-radius: 4px;
+}
+
+</style>
+</head>
+<body>
+  <div class="thank-you-container" hidden>
+    <h2>Thank you</h2>
+    <p>It means a lot<p>
+  </div>
+  <div class="survey-container">
+    <h2>Help me make things better</h2>
+    <p>Choose as many as you like</p>
+    <form class="survey-form">
+      <label class="checkbox-container">
+        <input type="checkbox" id="easyToUse" name="easyToUse">
+        It's hard to use
+      </label>
+      <label class="checkbox-container">
+        <input type="checkbox" id="slowsComputer" name="slowsComputer">
+        It's too slow
+      </label>
+      <label class="checkbox-container">
+        <input type="checkbox" id="lacksFeatures" name="lacksFeatures">
+        It doesn't have features I need
+      </label>
+      <label class="checkbox-container">
+        <input type="checkbox" id="technicalIssues" name="technicalIssues">
+        It has glitches
+      </label>
+      <label class="checkbox-container">
+        <input type="checkbox" id="other" name="other">
+        Other
+      </label>
+      <input type="text" id="otherText" name="otherText" class="text-input" placeholder="Specify?">
+      
+      <button type="submit" class="submit-button">Uninstall</button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    initializeApp({
+      apiKey: "AIzaSyD7S4WlUQW3C1CH7admxYd_WyFJEIdCe7Q",
+      authDomain: "youshield-30f0e.firebaseapp.com",
+      projectId: "youshield-30f0e",
+    });
+
+    const db = getFirestore();
+
+    async function submitFeedback(event) {
+      event.preventDefault();
+      const feedbackData = {};
+      if (document.getElementById('easyToUse').checked) feedbackData.easyToUse = true;
+      if (document.getElementById('slowsComputer').checked) feedbackData.slowsComputer = true;
+      if (document.getElementById('lacksFeatures').checked) feedbackData.lacksFeatures = true;
+      if (document.getElementById('technicalIssues').checked) feedbackData.technicalIssues = true;
+      if (document.getElementById('other').checked) feedbackData.other = document.getElementById('otherText').value || '--Checkbox checked but no info written--';
+
+      await addDoc(collection(db, "reviews"), feedbackData);
+      
+      document.querySelector('.survey-container').hidden = true;
+      document.querySelector('.thank-you-container').hidden = false;
+    }
+
+    document.querySelector('.survey-form').addEventListener('submit', submitFeedback);
+    document.getElementById('other').addEventListener('change', function() {
+      var otherText = document.getElementById('otherText');
+      if (this.checked) {
+        otherText.style.display = 'block';
+      } else {
+        otherText.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
+
