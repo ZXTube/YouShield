@@ -1,83 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="image/x-icon" href="../website-resources/favicon.png">
-<title>Help</title>
-<style>
-  body {
-  font-family: Arial, sans-serif;
-  background-color: #E0E0E0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+  <title>Help</title>
 
-body>div {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 80%;
-  max-width: 600px;
-}
-p {
-  color: #999;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  font-size: 13px;
-}
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "IBM Plex Mono";
+      background-color: #111;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 0px 20vw;
+    }
 
-.thank-you-container {
-  text-align: center;
-}
-.thank-you-container>p {
-  margin-bottom: 0px;
-}
+    body>div {
+      background-color: #222;
+      border-radius: 20px;
+      box-shadow: 0 0.7vw 1vw rgba(0, 0, 0, 0.1);
+      width: 100%;
+      width: -webkit-fill-available;
+      width: -moz-available;
+      padding: 2vw;
+    }
+    p {
+      color: #999;
+      margin-top: 0vw;
+      margin-bottom: 2vw;
+      font-size: 1vw;
+    }
 
-.survey-form {
-  display: flex;
-  flex-direction: column;
-}
+    .thank-you-container {
+      text-align: center;
+    }
+    .thank-you-container>p {
+      margin-bottom: 0px;
+    }
 
-h2 {
-  color: #333;
-  margin: 0px;
-}
+    .survey-form>div {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1vw;
+    }
 
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
+    h2 {
+      color: #eee;
+      margin: 0px;
+      font-size: 2vw;
+    }
 
-.checkbox-container input {
-  margin-right: 10px;
-}
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.9vw;
+      font-size: 0.95vw;
+      background-color: #333;
+      border-radius: 0.5vw;
+      color: white;
+      padding: 1vw;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    label.selected {
+      background-color: #555;
+    }
 
-.text-input {
-  display: none;
-  margin-bottom: 10px;
-}
+    label>input {
+      position: absolute;
+      opacity: 0;
+    }
 
-.submit-button {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  align-self: flex-end;
-  border-radius: 4px;
-}
-  .submit-button.clicked {
-    background-color: #57a; 
-  }
-</style>
+    .text-input {
+      display: none;
+      background-color: #333;
+      color: white;
+      border-radius: 0.5vw;
+      margin-top: 0.4vw;
+      font-size: 1vw;
+      padding: 0.5vw;
+      border: 0;
+      outline: 0;
+      width: -webkit-fill-available;
+      width: -moz-available;
+      margin-bottom: 0.6vw;
+    }
+
+    .submit-button {
+      background-color: #ffc107;
+      color: black;
+      border: none;
+      padding: 0.7vw 3vw;
+      font-size: 1vw;
+      cursor: pointer;
+      margin-top: 1vw;
+      border-radius: 0.5vw;
+    }
+    .submit-button.clicked {
+      background-color: #984; 
+    }
+  </style>
 </head>
 <body>
   <div class="thank-you-container" hidden>
@@ -88,31 +115,37 @@ h2 {
     <h2>Help me make things better</h2>
     <p>Choose as many as you like</p>
     <form class="survey-form">
-      <label class="checkbox-container">
-        <input type="checkbox" id="easyToUse" name="easyToUse">
-        It's hard to use
-      </label>
+      <div>
       <label class="checkbox-container">
         <input type="checkbox" id="slowsComputer" name="slowsComputer">
-        It's too slow
+        Slows down youtube
+      </label>
+      <label class="checkbox-container">
+        <input type="checkbox" id="x" name="x">
+        Found a better extension
+      </label>
+      <label class="checkbox-container">
+        <input type="checkbox" id="easyToUse" name="easyToUse">
+        Hard to use
       </label>
       <label class="checkbox-container">
         <input type="checkbox" id="lacksFeatures" name="lacksFeatures">
-        It doesn't have features I need
+        Missing features
       </label>
       <label class="checkbox-container">
         <input type="checkbox" id="technicalIssues" name="technicalIssues">
-        It has glitches
+        Has glitches
       </label>
       <label class="checkbox-container">
         <input type="checkbox" id="other" name="other">
         Other
       </label>
+      </div>
       <input type="text" id="otherText" name="otherText" class="text-input" placeholder="Specify?">
-      
-      <button type="submit" class="submit-button">Uninstall</button>
     </form>
   </div>
+
+  <button type="submit" class="submit-button">Uninstall</button>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -137,7 +170,9 @@ h2 {
       if (document.getElementById('lacksFeatures').checked) feedbackData.lacksFeatures = true;
       if (document.getElementById('technicalIssues').checked) feedbackData.technicalIssues = true;
       if (document.getElementById('other').checked) feedbackData.other = document.getElementById('otherText').value || '--Checkbox checked but no info written--';
+      feedbackData.date = new Date().toDateString();
 
+      document.querySelector('.submit-button').hidden = true;
       await addDoc(collection(db, "reviews"), feedbackData);
       // setTimeout(() => {
       document.querySelector('.survey-container').hidden = true;
@@ -146,14 +181,27 @@ h2 {
       
     }
 
-    document.querySelector('.survey-form').addEventListener('submit', submitFeedback);
+    document.querySelector('.submit-button').onclick = submitFeedback;
     document.getElementById('other').addEventListener('change', function() {
       var otherText = document.getElementById('otherText');
       if (this.checked) {
         otherText.style.display = 'block';
+        otherText.focus();
       } else {
         otherText.style.display = 'none';
       }
+    });
+
+    const checkboxes = document.querySelectorAll('.checkbox-container input');
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          this.parentElement.classList.add('selected');
+        } else {
+          this.parentElement.classList.remove('selected');
+        }
+      });
     });
   </script>
 </body>
