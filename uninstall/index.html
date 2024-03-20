@@ -121,11 +121,11 @@
         Slows down youtube
       </label>
       <label class="checkbox-container">
-        <input type="checkbox" id="x" name="x">
+        <input type="checkbox" id="betterAlternative" name="betterAlternative">
         Found a better extension
       </label>
       <label class="checkbox-container">
-        <input type="checkbox" id="easyToUse" name="easyToUse">
+        <input type="checkbox" id="hardToUse" name="hardToUse">
         Hard to use
       </label>
       <label class="checkbox-container">
@@ -165,7 +165,8 @@
       document.querySelector('.submit-button').classList.add('clicked');
 
       const feedbackData = {};
-      if (document.getElementById('easyToUse').checked) feedbackData.easyToUse = true;
+      if (document.getElementById('hardToUse').checked) feedbackData.easyToUse = true;
+      if (document.getElementById('betterAlternative').checked) feedbackData.betterAlternative = true;
       if (document.getElementById('slowsComputer').checked) feedbackData.slowsComputer = true;
       if (document.getElementById('lacksFeatures').checked) feedbackData.lacksFeatures = true;
       if (document.getElementById('technicalIssues').checked) feedbackData.technicalIssues = true;
@@ -174,10 +175,8 @@
 
       document.querySelector('.submit-button').hidden = true;
       await addDoc(collection(db, "reviews"), feedbackData);
-      // setTimeout(() => {
       document.querySelector('.survey-container').hidden = true;
       document.querySelector('.thank-you-container').hidden = false;
-      // }, 1000)
       
     }
 
