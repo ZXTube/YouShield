@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="image/x-icon" href="../website-resources/favicon.png">
-  <title>Help</title>
+  <title>Help us improve YouShield</title>
 
   <style>
     body {
@@ -104,6 +104,12 @@
     .submit-button.clicked {
       background-color: #984; 
     }
+
+    .errorMessage {
+      color: red;
+      margin: 0px;
+      font-size: 1vw;
+    }
   </style>
 </head>
 <body>
@@ -142,10 +148,12 @@
       </label>
       </div>
       <input type="text" id="otherText" name="otherText" class="text-input" placeholder="Please specify">
+      <span id="otherError" class="errorMessage" hidden>Please specify your reason.</span>
     </form>
   </div>
 
-  <button type="submit" class="submit-button">Uninstall</button>
+  <p id="errorMessage" class="errorMessage"></p>
+  <button type="submit" class="submit-button">Submit</button>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -162,21 +170,34 @@
     async function submitFeedback(event) {
       event.preventDefault();
 
-      let submitButton = document.querySelector('.submit-button');
-      submitButton.classList.add('clicked');
-      submitButton.style.pointerEvents = 'none';
-
       const feedbackData = {};
       if (document.getElementById('hardToUse').checked) feedbackData.easyToUse = true;
       if (document.getElementById('betterAlternative').checked) feedbackData.betterAlternative = true;
       if (document.getElementById('slowsComputer').checked) feedbackData.slowsComputer = true;
       if (document.getElementById('lacksFeatures').checked) feedbackData.lacksFeatures = true;
       if (document.getElementById('technicalIssues').checked) feedbackData.technicalIssues = true;
-      if (document.getElementById('other').checked) feedbackData.other = document.getElementById('otherText').value || '--Checkbox checked but no info written--';
+      if (document.getElementById('other').checked) {
+        feedbackData.other = document.getElementById('otherText').value;
+        if (feedbackData.other == '') {
+              showOtherError();
+              return;
+          }
+      }
+
+      if (Object.keys(feedbackData).length == 0) {
+        showErrorModal('Please select at least one reason for uninstalling.');
+        return;
+      }
+
+      let submitButton = document.querySelector('.submit-button');
+      submitButton.classList.add('clicked');
+      submitButton.style.pointerEvents = 'none';
+
       feedbackData.date = new Date().toDateString();
 
       await addDoc(collection(db, "reviews"), feedbackData);
       submitButton.hidden = true;
+      document.querySelector('#errorMessage').hidden = true;
       document.querySelector('.survey-container').hidden = true;
       document.querySelector('.thank-you-container').hidden = false;
       
@@ -205,6 +226,16 @@
         }
       });
     });
+
+    function showErrorModal(message) {
+      let error = document.getElementById('errorMessage');
+      error.innerText = message;
+    }
+
+    function showOtherError() {
+      let otherError = document.getElementById('otherError');
+      otherError.hidden = false;
+    }
   </script>
 </body>
 </html>
