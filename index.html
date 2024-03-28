@@ -1,125 +1,291 @@
 <html lang="en"><head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7VJ6E1KQZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clear YouTube recommendations, suggestions, shorts, homepage, and turn off autoplay.">
 
-  gtag('config', 'G-X7VJ6E1KQZ');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Clear YouTube recommendations, suggestions, shorts, homepage, and turn off autoplay.">
-<meta name="google-site-verification" content="FdUecuLgBo0Fz5qeak3X6f8OR_MU6ZbWh-skl7WRBmA" />
+  <meta name="google-site-verification" content="FdUecuLgBo0Fz5qeak3X6f8OR_MU6ZbWh-skl7WRBmA" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7VJ6E1KQZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-<title>YouShield - Remove Youtube Shorts</title>
-<style>
-:root {
-  --light: #eee;
-  --gray: #ccc
-}
-body {
-  font-family:open sans,serif;
-  background:linear-gradient(to bottom right,#111,#222);
-  margin:0;
-  font-size:1em
-}
-#main {
-  margin:auto
-}
-section {
-  min-height:calc(100vh - 1.5em);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  text-align:center;
-  color:var(--gray);
-  padding:.75em
-}
-section h1 {
-  font-family:assistant,sans-serif
-}
-section h1 {
-  font-size:7.5em;
-  color:var(--light);
-  line-height:1;
-  margin:0
-}
-section h2 {
-  font-size:1.7em;
-  margin-top:.5em;
-  margin-bottom:.9em;
-  font-weight:400;
-  line-height:1.2
-}
+    gtag('config', 'G-X7VJ6E1KQZ');
+  </script>
 
-.button {
-    background-color: #44e;
-    color: black;
-    padding: 0.9em;
-    margin: 1em 3em;
-    margin-bottom: 0.7em;
-    font-size: 2em;
-    border-radius: 0.5em;
-    cursor: pointer;
-}
+  <title>YouShield - Remove Youtube Shorts</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-img {
-  max-width:6em;
-  margin: 0px 0.5em;
-  cursor: pointer;
-}
-img:hover {
-  transform:scale(1.08);
-}
+  <style>
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: #444 #2e2e2e;
+    }
 
-@media only screen and (max-width:780px) {
-  body {
-    font-size:.95em
-  }
-  section h1 {
-    font-size:4.4em
-  }
-  .button {
-    font-size: 1.7em;
-  }
-}
-@media only screen and (max-width:830px) and (orientation:landscape),screen and (max-width:480px) {
-  body {
-    font-size:.9em
-  }
-  section h1 {
-    font-size:3.2em
-  }
-  section h2 {
-    font-size:1.3em
-  }
-  .button {
-    font-size: 1.5em;
-  }
-}
+    body {
+      background-color: #121212;
+      margin: 0px;
+      color: #eee;
+      overflow-x: hidden;
+      font-family: "IBM Plex Mono";
+    }
 
-</style>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Assistant" rel="stylesheet">
-<link rel="shortcut icon" type="image/x-icon" href="website-resources/favicon.png">
+    h1 {
+      font-weight: 300;
+      font-size: 4.7vw;
+      margin: 1vw 0px;
+    }
+    b {
+      font-weight: 900;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    .button {
+      font-size: 1.3vw;
+      background-color: #00695c;
+      border-radius: 6px;
+      padding: 0.8vw 1.3vw;
+      outline: none;
+      border: none;
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 1.5vw;
+      transition: background-color 0.2s ease;
+    }
+    .button.light {
+      background-color: #263238;
+      display: inline-flex;
+      color: #80cbc4;
+    }
+    .button>img {
+      width: 1.3vw;
+      margin-left: 0.4vw;
+      margin-bottom: -0.1vw;
+    }
+    .button.dark:hover {
+      background-color: #1a5a4a;
+    }
+    .button.light:hover {
+      background-color: #1a2a2f;
+    }
+
+    #top {
+      background-color: #121212;
+      width: 170vw;
+      display: flex;
+      padding-top: 4.8vw;
+      margin-bottom: 6vw;
+      justify-content: flex-end;
+    }
+    #left {
+      width: 100%;
+      padding-left: 10.4vw;
+      padding-top: 1.5vw;
+    }
+    #left>p {
+      color: #777;
+      font-size: 1.3vw;
+      width: 35vw;
+      margin: 2vw 0px;
+    } 
+
+    #rightVid {
+      width: 70vw;
+      position: absolute;
+      top: 4vw;
+      left: 60vw;
+    }
+
+    .stat {
+      background-image: linear-gradient(145deg, #263238 0%, #2A3D4D 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 7vw;
+    }
+    .stat>h1 {
+      font-weight: 700;
+      font-size: 7vw;
+      margin-right: 8vw;
+      color: #80cbc4
+    }
+    .stat>div {
+      width: 40%;
+      height: 14vw;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .stat>div>.button {
+      width: 11vw;
+      font-size: 1vw;
+      font-weight: 600;
+    }
+    .stat>div>h3 {
+      font-size: 1.3vw;
+      margin: 0.3vw 0px;
+    }
+    .stat>div>p {
+      margin: 0px;
+      font-size: 1.1vw;
+      color: #b0bec5;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 2.3vw 0;
+      background-color: #121212;
+      color: #eee;
+      margin-bottom: 1vw;
+    }
+    .feature h2 {
+      margin: 0px;
+      font-size: 2.75vw;
+      margin-bottom: 3vw;
+    }
+    .feature img {
+      max-width: 60%;
+      height: auto;
+    }
+    .feature video {
+      width: 50%;
+    }
+
+    .faq-item {
+      margin: 1.1vw 0;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+      margin: 0 auto;
+    }
+    .faq-answer {
+      font-size: 1.1vw;
+      color: #b0bec5;
+      text-align: left;
+      width: 60%;
+      margin: 0.6vw auto;
+      display: none;
+    }
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+  </style>
+  <link rel="shortcut icon" type="image/x-icon" href="website-resources/favicon.png">
 </head>
+
 <body>
-<section>
-<div id="main">
-<h1>YouShield</h1>
-<h2>Watch YouTube without any recommendations, shorts and more.</h2>
+  <div id="top">
+    <div id="left">
+      <h1>Stay <b>Focused</b></h1>
+      <h1>Cut <b>Distractions</b></h1>
+      <h1>on <b>YouTube</b></h1>
+      <p>A browser extension that Removes YouTube recommendations, suggestions, shorts and homepage.</p>
+      <div>
+        <div class="button dark" onclick="location.href='https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje'">Add to Chrome</div>
+        <div class="button light" onclick="location.href='https://addons.mozilla.org/en-US/firefox/addon/youshield-remove-youtube-short/?utm_source=zxtube.github.io/YouShield&utm_medium=referral'">Add to Firefox <img src="website-resources/arrow.svg"></div>
+      </div>
+    </div>
+  </div>
+      
+  <video id="rightVid" src="website-resources/removesHomepageRecommendations.mp4" alt="Showcasing how youshield removes all video recommendations in the homepage" autoplay muted loop></video>
 
-<!-- <div class="button" onclick="location.href='https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje';">Add to Chrome now</div> -->
+  <div class="stat">
+    <h1>3.7M</h1>
+    <div>
+      <h3>Daily uploads on YouTube</h3>
+      <p>With 3.7 million videos uploaded daily, it's hard to focus on what matters to you.</p>
+      <div class="button dark" onclick="location.href='https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje'">Find What Matters</div>
+    </div>
+  </div>
 
-<div style="display:flex; flex-direction: row; justify-content:center;">
-<img class="broswer-logo" src="website-resources/chrome.png" onclick="location.href='https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje'">
-<img class="broswer-logo" src="website-resources/firefox.png" onclick="location.href='https://addons.mozilla.org/en-US/firefox/addon/youshield-remove-youtube-short/?utm_source=zxtube.github.io/YouShield&utm_medium=referral'">
-<img class="broswer-logo" src="website-resources/edge.png" onclick="alert('Work in progress')">
-</div>
+  <div class="feature" id="remove-shorts">
+    <h2>Break Free from Shorts' Endless Scroll</h2>
+    <video src="website-resources/removesSearchShorts.mp4" alt="How YouShield removes YouTube Shorts" autoplay muted loop></video>
+  </div>
 
-</div>
-</section>
+  <div class="feature blue" id="remove-sidebar">
+    <h2>Stop Sidetracks, More Immersive Watching</h2>
+    <video src="website-resources/removesSidebarRecommendations.mp4" alt="How YouShield removes the sidebar" autoplay muted loop></video>
+  </div>
+  
+  <div class="feature" id="set-time-limit">
+    <h2>Control Watching, Keep Time Promises</h2>
+    <video src="website-resources/limitWatchingRandomVideos.mp4" alt="How YouShield sets a time limit on YouTube usage" autoplay muted loop></video>
+  </div>
 
-</body></html>
+  <div id="faq" class="feature">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question button light" onclick="toggleFaq(this)">
+        How do I install YouShield?<span class="arrow">&#9660;</span>
+      </div>
+      <div class="faq-answer">You can install YouShield by visiting the <a href="https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje">Chrome Web Store</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/youshield-remove-youtube-short/?utm_source=zxtube.github.io/YouShield&utm_medium=referral">Firefox Add-ons</a> page
+        and clicking "Add to Browser".</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question button light" onclick="toggleFaq(this)">
+        What is the 'Consume' button?<span class="arrow">&#9660;</span>
+      </div>
+      <div class="faq-answer">The consume button in the homepage makes you enter consume mode, which means that all recommendations won't be removed. There's a consume limit that you set everyday, it decides how long you can spend watching videos in consume mode. To set the consume limit watch <a href="#set-time-limit">the video above</a></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question button light" onclick="toggleFaq(this)">
+        How do I set the consume limit?<span class="arrow">&#9660;</span>
+      </div>
+      <div class="faq-answer">After installing YouShield, in the top right click the extensions icon then find YouShield in the list, click it and set the consume limit to whatever you want, then in youtube.com click the consume button, and you'll enter consume mode</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question button light" onclick="toggleFaq(this)">
+        How do I take a rest and watch fun videos?<span class="arrow">&#9660;</span>
+      </div>
+      <div class="faq-answer">After installing YouShield, in the top right click the extensions icon then find YouShield in the list, click it and set the consume limit to whatever you want, then in youtube.com click the consume button, and you'll enter consume mode. You need to set the consume limit everyday</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question button light" onclick="toggleFaq(this)">
+        What is the 'For You' button?<span class="arrow">&#9660;</span>
+      </div>
+      <div class="faq-answer">The 'For You' button sends you to the subscriptions page so that you can enjoy watching some videos but also benefit and learn. This of course means that you need to unsubscribe from all channels that are just for fun and only keep the quality channels</div>
+    </div>
+  </div>
+  
+
+  <footer style="background-color: #121212; color: #eee; font-family: 'IBM Plex Mono'; text-align: center;">
+    <p style="color: #777; font-size: 1.2vw;">Published by YouShield, 2024.</p>
+    <p style="font-size: 1vw; margin-top: 1vw;">
+      <a href="https://zxtube.github.io/YouShield/privacypolicy" style="color: #80cbc4; text-decoration: none;">Privacy Policy</a> |
+      <a href="https://zxtube.github.io/YouShield/termsofservice" style="color: #80cbc4; text-decoration: none;">Terms of Service</a>
+    </p>
+  </footer>
+
+  <script>
+    function toggleFaq(questionElem) {
+      let answer = questionElem.nextElementSibling;
+      var arrow = questionElem.querySelector('.arrow');
+      answer.style.display = answer.style.display !== 'block' ? 'block' : 'none';
+      arrow.style.transform = answer.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+  </script> 
+</body>
+
+</html>
