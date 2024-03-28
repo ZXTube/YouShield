@@ -1,4 +1,4 @@
-# YouShield
+# YouShield - Remove Youtube Recommendations, Shorts, Homepage and more
 
 Protecting you from YouTube
 
