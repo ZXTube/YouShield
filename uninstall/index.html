@@ -131,8 +131,8 @@
         Found a better extension
       </label>
       <label class="checkbox-container">
-        <input type="checkbox" id="hardToUse" name="hardToUse">
-        Hard to use
+        <input type="checkbox" id="dontKnowHowToUse" name="dontKnowHowToUse">
+        Don't know how to use
       </label>
       <label class="checkbox-container">
         <input type="checkbox" id="lacksFeatures" name="lacksFeatures">
@@ -171,7 +171,7 @@
       event.preventDefault();
 
       const feedbackData = {};
-      if (document.getElementById('hardToUse').checked) feedbackData.hardToUse = true;
+      if (document.getElementById('dontKnowHowToUse').checked) feedbackData.dontKnowHowToUse = true;
       if (document.getElementById('betterAlternative').checked) feedbackData.betterAlternative = true;
       if (document.getElementById('slowsComputer').checked) feedbackData.slowsComputer = true;
       if (document.getElementById('lacksFeatures').checked) feedbackData.lacksFeatures = true;
@@ -185,7 +185,7 @@
       }
 
       if (Object.keys(feedbackData).length == 0) {
-        showErrorModal('Please select at least one reason for uninstalling.');
+        showError('Please select at least one reason for uninstalling.');
         return;
       }
 
@@ -193,7 +193,7 @@
       submitButton.classList.add('clicked');
       submitButton.style.pointerEvents = 'none';
 
-      feedbackData.date = new Date().toDateString();
+      feedbackData.date = new Date().toLocaleDateString();
 
       await addDoc(collection(db, "reviews"), feedbackData);
       submitButton.hidden = true;
@@ -227,7 +227,7 @@
       });
     });
 
-    function showErrorModal(message) {
+    function showError(message) {
       let error = document.getElementById('errorMessage');
       error.innerText = message;
     }
