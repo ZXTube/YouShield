@@ -1,5 +1,7 @@
 # YouShield - Remove Youtube Recommendations, Shorts, Homepage and more
 
+> :warning: This code is old, latest version of youshield is on chrome web store
+
 Protecting you from YouTube
 
 This extension tries as hard as possible to keep you from procrastinating and falling into the YouTube loop.
