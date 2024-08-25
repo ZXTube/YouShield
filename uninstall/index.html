@@ -167,6 +167,10 @@
 
     const db = getFirestore();
 
+      fetch('https://ipinfo.io/json?token=43a3c946be1fbb')
+      .then(response => response.json())
+      .then(data => console.log(data.country))
+
     async function submitFeedback(event) {
       event.preventDefault();
 
@@ -193,14 +197,20 @@
       submitButton.classList.add('clicked');
       submitButton.style.pointerEvents = 'none';
 
-      feedbackData.date = new Date().toLocaleDateString();
+      feedbackData.date = new Date().toLocaleDateString('en-GB');
+
+      fetch('https://ipinfo.io/json?token=43a3c946be1fbb')
+      .then(response => response.json())
+      .then(data => feedbackData.country = data.country)
+      .catch(error => console.error('Error fetching geolocation data:', error));
+
+      feedbackData.language = navigator.language;
 
       await addDoc(collection(db, "reviews"), feedbackData);
       submitButton.hidden = true;
       document.querySelector('#errorMessage').hidden = true;
       document.querySelector('.survey-container').hidden = true;
       document.querySelector('.thank-you-container').hidden = false;
-      
     }
 
     document.querySelector('.submit-button').onclick = submitFeedback;
