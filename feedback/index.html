@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="../website-resources/favicon.png">
+  <title>Help us improve YouShield</title>
+
+  <style>
+    body {
+      font-family: "Arial";
+      background-color: #111;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 0px 20vw;
+    }
+
+    body>div {
+      background-color: #222;
+      border-radius: 20px;
+      box-shadow: 0 0.7vw 1vw rgba(0, 0, 0, 0.1);
+      width: 100%;
+      width: -webkit-fill-available;
+      width: -moz-available;
+      padding: 1vw 2vw;
+      padding-bottom: 2vw;
+    }
+    p {
+      color: #999;
+      margin-top: 0vw;
+      margin-bottom: 2vw;
+      font-size: 1vw;
+    }
+
+    .thank-you-container {
+      text-align: center;
+      padding: 2vw;
+    }
+    .thank-you-container>p {
+      margin-bottom: 0px;
+    }
+
+    .survey-form>div {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1vw;
+    }
+
+    h2 {
+      color: #eee;
+      margin: 0px;
+      font-size: 2vw;
+    }
+    .text-input {
+      display: none;
+      background-color: #333;
+      color: white;
+      border-radius: 0.5vw;
+      margin-top: 0.7vw;
+      font-size: 1vw;
+      padding: 0.5vw;
+      border: 0;
+      outline: 0;
+      width: -webkit-fill-available;
+      width: -moz-available;
+      margin-bottom: 0.6vw;
+    }
+
+    .submit-button {
+      background-color: #ffc107;
+      color: black;
+      border: none;
+      padding: 0.7vw 3vw;
+      font-size: 1vw;
+      cursor: pointer;
+      margin-top: 1vw;
+      border-radius: 0.5vw;
+    }
+    .submit-button.clicked {
+      background-color: #984; 
+    }
+
+    .errorMessage {
+      color: red;
+      margin: 0px;
+      font-size: 1vw;
+    }
+    #feedback-input {
+        border: 1px solid #252525;
+        outline: none;
+        width: 100%;
+        height: 78%;
+        background-color: #151515;
+        resize: none;
+        border-radius: 20px;
+        font-size: 1.2vw;
+        color: #eee;
+        padding: 1vw;
+    }
+    textarea::-webkit-scrollbar {
+      width: 10px; /* Width of the scrollbar */
+    }
+    textarea::-webkit-scrollbar-track {
+      background: #222; /* Track color */
+    }
+    textarea::-webkit-scrollbar-thumb {
+      background: #777; /* Scrollbar color */
+      border-radius: 10px;
+    }
+    textarea::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Color on hover */
+    }
+    textarea { /* firefox */
+      scrollbar-width: thin;
+      scrollbar-color: #777 #222; /* Scrollbar color and track color */
+    }
+  </style>
+</head>
+<body>
+  <div class="thank-you-container" hidden>
+    <h2>Thank you</h2>
+    <p>It means a lot<p>
+  </div>
+  <div class="survey-container">
+    <h2>Submit feedback</h2>
+    <p>I will consider what you say as early as possible</p>
+    <textarea id="feedback-input"></textarea>
+    <div class="button" id="submit-feedback-btn" onclick="submitFeedback()">Submit</div>
+  </div>
+
+  <p id="errorMessage" class="errorMessage"></p>
+  <button type="submit" class="submit-button">Submit</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    initializeApp({
+      apiKey: "AIzaSyD7S4WlUQW3C1CH7admxYd_WyFJEIdCe7Q",
+      authDomain: "youshield-30f0e.firebaseapp.com",
+      projectId: "youshield-30f0e",
+    });
+
+    const db = getFirestore();
+
+    async function submitFeedback(event) {
+      event.preventDefault();
+
+      const feedback = document.getElementById('feedback-input').textContent;
+
+      if (feedback.length <= 10) {
+        showError('Please write more than 10 characters');
+        return;
+      } else if (feedback.length > 700) {
+        showError('Too much text to submit');
+        return;
+      }
+
+      let submitButton = document.querySelector('.submit-button');
+      submitButton.classList.add('clicked');
+      submitButton.style.pointerEvents = 'none';
+
+      await addDoc(collection(db, "feedback"), feedback);
+      submitButton.hidden = true;
+      document.querySelector('#errorMessage').hidden = true;
+      document.querySelector('.survey-container').hidden = true;
+      document.querySelector('.thank-you-container').hidden = false;
+    }
+
+    document.querySelector('.submit-button').onclick = submitFeedback;
+    document.querySelector('.survey-form').onsubmit = submitFeedback;
+
+    function showError(message) {
+      let error = document.getElementById('errorMessage');
+      error.innerText = message;
+    }
+  </script>
+</body>
+</html>
