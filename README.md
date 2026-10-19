@@ -1,6 +1,6 @@
 # YouShield - Remove Youtube Recommendations, Shorts, Homepage and more
 
-> :warning: This code is old, latest version of youshield is on chrome web store
+> :warning: This code is old, latest version of youshield is on chrome web store -> [here](https://chromewebstore.google.com/detail/youshield-remove-youtube/iohilpdcenclcjbjbebbjgpiimobkpje?hl=en)
 
 Protecting you from YouTube
 
